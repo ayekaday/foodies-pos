@@ -1,48 +1,61 @@
-interface Menu {
-  name: string;
-  price: number;
-  isAvailable: boolean;
+import { useState } from "react";
+import { Menu } from "./Content";
+
+interface Props {
+  setMenus: React.Dispatch<React.SetStateAction<Menu[]>>;
+  menus: Menu[];
 }
 
-export function NewMenu() {
-  const menu: Menu = {
-    name: "",
-    price: 0,
-    isAvailable: false,
+const NewMenu = ({ menus, setMenus }: Props) => {
+  const defaultMenu = { id: 0, name: "", price: 0, isAvailable: false };
+  const [newMenu, setNewMenu] = useState<Menu>(defaultMenu);
+  const handleClickMenu = () => {
+    setMenus([...menus, newMenu]);
+    setNewMenu(defaultMenu);
   };
-
-  const handleCreateMenu = () => {
-    console.log(menu);
-  };
-
   return (
-    <div className="text-[15px] flex flex-col max-w-52 ">
-      <input
-        type="text"
-        placeholder="Name"
-        className="border border-[#8D99AE] h-8 p-1 m-1"
-        onChange={(evt) => (menu.name = evt.target.value)}
-      />
-      <input
-        type="number"
-        placeholder="Price"
-        className="border border-[#8D99AE] h-8 p-1 m-1"
-        onChange={(evt) => (menu.price = Number(evt.target.value))}
-      />
+    <div>
       <div>
+        <input
+          type="text"
+          placeholder="Name"
+          value={newMenu.name}
+          className="border border-[#8D99AE] h-8 p-1 m-1"
+          onChange={(evt) => {
+            setNewMenu({ ...newMenu, name: evt.target.value });
+          }}
+        />
+      </div>
+      <div>
+        <input
+          type="number"
+          placeholder="Price"
+          value={newMenu.price}
+          className="border border-[#8D99AE] h-8 p-1 m-1"
+          onChange={(evt) => {
+            setNewMenu({ ...newMenu, price: Number(evt.target.value) });
+          }}
+        />
+      </div>
+      {/*  <div>
         <input
           type="checkbox"
           className="size-3 m-1"
-          onChange={(evt) => (menu.isAvailable = evt.target.checked)}
-        />
+          onChange={(evt) => {
+            menu.isAvailable = evt.target.checked;
+          }}
+        />{" "}
         <span>Available</span>
-      </div>
+      </div> */}
+
       <button
-        className="border-[#2B2D42] border w-20 bg-[#8D99AE] text-[#EDF2F4] m-1"
-        onClick={handleCreateMenu}
+        className="border-gray-600 border w-20 bg-white text-gray-800 m-1"
+        onClick={handleClickMenu}
       >
         Create
       </button>
     </div>
   );
-}
+};
+
+export default NewMenu;

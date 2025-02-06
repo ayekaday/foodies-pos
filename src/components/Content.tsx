@@ -1,16 +1,26 @@
-import { Menu } from "./Menu";
-import { NewMenu } from "./NewMenu";
+import { useState } from "react";
+import MenuItem from "./MenuItem";
+import NewMenu from "./NewMenu";
 
-export function Content() {
+export interface Menu {
+  id: number;
+  name: string;
+  price: number;
+  isAvailable: boolean;
+}
+
+const Content = () => {
+  const [menus, setMenus] = useState<Menu[]>([]);
   return (
-    <div className="bg-[#EDF2F4] text-[#2B2D42] w-[100%] p-1 ">
-      Menu
+    <div>
+      <NewMenu menus={menus} setMenus={setMenus} />
       <div>
-        <NewMenu />
-        <div className="mt-9">
-          <Menu />
-        </div>
+        {menus.map((ele) => {
+          return <MenuItem menu={ele} key={ele.id} />;
+        })}
       </div>
     </div>
   );
-}
+};
+
+export default Content;
