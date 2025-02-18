@@ -1,4 +1,4 @@
-import { Menu } from "./Content";
+import { Menu } from "./Menus";
 
 interface Props {
   menu: Menu;

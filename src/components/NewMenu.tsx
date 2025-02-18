@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Menu } from "./Content";
+import { Menu } from "./Menus";
 
 interface Props {
   setMenus: React.Dispatch<React.SetStateAction<Menu[]>>;
@@ -10,7 +10,10 @@ const NewMenu = ({ menus, setMenus }: Props) => {
   const defaultMenu = { id: 0, name: "", price: 0, isAvailable: false };
   const [newMenu, setNewMenu] = useState<Menu>(defaultMenu);
   const handleClickMenu = () => {
-    setMenus([...menus, newMenu]);
+    const updateMenus = [...menus, newMenu];
+    setMenus(updateMenus);
+    localStorage.setItem("menus", JSON.stringify(updateMenus));
+
     setNewMenu(defaultMenu);
   };
   return (
@@ -37,16 +40,17 @@ const NewMenu = ({ menus, setMenus }: Props) => {
           }}
         />
       </div>
-      {/*  <div>
+      <div>
         <input
           type="checkbox"
+          checked={newMenu.isAvailable}
           className="size-3 m-1"
           onChange={(evt) => {
-            menu.isAvailable = evt.target.checked;
+            setNewMenu({ ...newMenu, isAvailable: evt.target.checked });
           }}
         />{" "}
         <span>Available</span>
-      </div> */}
+      </div>
 
       <button
         className="border-gray-600 border w-20 bg-white text-gray-800 m-1"

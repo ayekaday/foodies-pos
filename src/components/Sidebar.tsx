@@ -1,27 +1,56 @@
+import { Link } from "react-router-dom";
+
 export function Sidebar() {
   return (
-    <div className="bg-[#003049] text-[#fdf0d5] h-[100vh] w-[350px] text-[20px] ">
-      <div className="cursor-pointer bg-[#] p-[10px] hover:bg-[#f5f3f4] hover:text-[#001427]">
+    <div className="bg-[#003049] text-[#fdf0d5] h-[100vh] w-[250px] text-[20px] flex flex-col">
+      <Link
+        to={"/"}
+        className="cursor-pointer bg-[#] p-[10px] hover:bg-[#f5f3f4] hover:text-[#001427]"
+      >
+        Orders
+      </Link>
+      <Link
+        to={"/menu-categories"}
+        className="cursor-pointer bg-[#] p-[10px] hover:bg-[#f5f3f4] hover:text-[#001427]"
+      >
         Menu Categories
-      </div>
-      <div className="cursor-pointer bg-[#] p-[10px] hover:bg-[#f5f3f4] hover:text-[#001427]">
+      </Link>
+      <Link
+        to={"/menus"}
+        className="cursor-pointer bg-[#] p-[10px] hover:bg-[#f5f3f4] hover:text-[#001427]"
+      >
         Menus
-      </div>
-      <div className="cursor-pointer bg-[#] p-[10px] hover:bg-[#f5f3f4] hover:text-[#001427]">
+      </Link>
+      <Link
+        to={"/addon-categories"}
+        className="cursor-pointer bg-[#] p-[10px] hover:bg-[#f5f3f4] hover:text-[#001427]"
+      >
         Addon Categories
-      </div>
-      <div className="cursor-pointer bg-[#] p-[10px] hover:bg-[#f5f3f4] hover:text-[#001427]">
+      </Link>
+      <Link
+        to={"/addon"}
+        className="cursor-pointer bg-[#] p-[10px] hover:bg-[#f5f3f4] hover:text-[#001427]"
+      >
         Addon
-      </div>
-      <div className="cursor-pointer bg-[#] p-[10px] hover:bg-[#f5f3f4] hover:text-[#001427]">
+      </Link>
+      <Link
+        to={"/tables"}
+        className="cursor-pointer bg-[#] p-[10px] hover:bg-[#f5f3f4] hover:text-[#001427]"
+      >
         Tables
-      </div>
-      <div className="cursor-pointer bg-[#] p-[10px] hover:bg-[#f5f3f4] hover:text-[#001427]">
+      </Link>
+      <Link
+        to={"/locations"}
+        className="cursor-pointer bg-[#] p-[10px] hover:bg-[#f5f3f4] hover:text-[#001427]"
+      >
         Locations
-      </div>
-      <div className="cursor-pointer bg-[#] p-[10px] hover:bg-[#f5f3f4] hover:text-[#001427]">
-        Setting
-      </div>
+      </Link>
+      <Link
+        to={"/settings"}
+        className="cursor-pointer bg-[#] p-[10px] hover:bg-[#f5f3f4] hover:text-[#001427]"
+      >
+        Settings
+      </Link>
     </div>
   );
 }
