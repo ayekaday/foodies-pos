@@ -2,19 +2,19 @@ import { useState } from "react";
 import { Menu } from "./Menus";
 
 interface Props {
-  setMenus: React.Dispatch<React.SetStateAction<Menu[]>>;
-  menus: Menu[];
+  fetchMenus: () => Promise<void>;
 }
 
-const NewMenu = ({ menus, setMenus }: Props) => {
+const NewMenu = ({ fetchMenus }: Props) => {
   const defaultMenu = { id: 0, name: "", price: 0, isAvailable: false };
   const [newMenu, setNewMenu] = useState<Menu>(defaultMenu);
-  const handleClickMenu = () => {
-    const updateMenus = [...menus, newMenu];
-    setMenus(updateMenus);
-    localStorage.setItem("menus", JSON.stringify(updateMenus));
-
-    setNewMenu(defaultMenu);
+  const handleClickMenu = async () => {
+    //POST
+    await fetch("http://localhost:5000", {
+      method: "POST",
+      body: JSON.stringify(newMenu),
+    });
+    fetchMenus();
   };
   return (
     <div>
